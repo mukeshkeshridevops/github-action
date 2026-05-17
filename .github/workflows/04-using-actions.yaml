@@ -5,6 +5,9 @@ on: push
 jobs:
     build:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+              working-directory: using-actions/react-app
         steps:
             - name: Checkout code
               uses: actions/checkout@v4 # custom action to checkout code from the repository
@@ -16,5 +19,8 @@ jobs:
 
             - name: Install dependencies
               run: |
-                cd using-actions/react-app
                 npm ci 
+
+            - name: Run Unit Tests
+              run: |
+                npm run test
