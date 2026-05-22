@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             JOB_VAR: 'I am a job environment variable'
-            OVERERITTEN: 'I will overwrite the workflow variable'
+            OVERERITTEN: 'I have been overwritten at job level'
         steps:
             - name: Print Env variables
               env:
@@ -21,7 +21,8 @@ jobs:
               run: |
                 echo "Step variable: $ {{ env.STEP_VAR }}"
                 echo "Step variable 2: $ {{ env.step_var2 }}"
-                echo "Workflow variable: $ {{ env.WORKFLOW_VAR }}"
+                echo "Job env variable: $ {{ env.JOB_VAR }}"
+                echo "Workflow env variable: $ {{ env.WORKFLOW_VAR }}"
                 echo "Overwritten variable: $ {{ env.OVERERITTEN }}"
             - name: Overwrite job variable
               env:
