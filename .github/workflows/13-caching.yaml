@@ -7,6 +7,14 @@ on:
         description: 'Whether to execute cache step'
         type: boolean
         default: true
+      node-version:
+        description: 'Select Node.js version to setup'
+        type: choice
+        options:
+          - '26.x'
+          - '20.x'
+          - '18.x'
+        default: '26.x'
 
 jobs:
   build:
@@ -20,7 +28,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: '26.x'
+          node-version: ${{ github.event.inputs.node-version }}
       - name: Install dependencies
         run: npm ci
       - name: Testing
