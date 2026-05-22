@@ -25,8 +25,13 @@ jobs:
             - name: Install dependencies
               if: steps.cache.outputs.cache-hit != 'true'
               run: npm ci
-            - name: Unit Tests
-              run: npm run test
+            - name: Unit Tests and Coverage
+              run: npm run test -- --coverage
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v4
+              with:
+                name: coverage-report
+                path: 14-artifacts/react-app/coverage
             - name: Build code
               run: npm run build
             - name: Upload build artifacts
@@ -45,4 +50,12 @@ jobs:
                 path: 14-artifacts/react-app/build
             - name: Show folder structure
               run: ls -R
-        
+            
+            - name: Download coverage report
+              uses: actions/download-artifact@v5
+              with:
+                name: coverage-report
+                path: 14-artifacts/react-app/coverage
+            - name: Show folder structure
+              run: ls -R
+            
