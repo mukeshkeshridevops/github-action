@@ -13,7 +13,7 @@ on:
 run-name: 17 - 1 - Custom Actions - Composite| env - ${{ github.event.inputs.target-env }}
 
 env:
-    working-dir: 17-custon-actions/react-app
+    working-dir: 17-custom-actions/react-app
 
 jobs:
   build:
