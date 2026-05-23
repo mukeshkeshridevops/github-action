@@ -18,6 +18,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.working-dir }}
     steps:
         - name: Checkout code
           uses: actions/checkout@v4 
@@ -25,8 +28,9 @@ jobs:
           uses: ./.github/actions/composite-cache-deps
           with:
               node-version: 26.x
-              working-dir: ${{ env.working-dir }}
+              working-directory: ${{ env.working-dir }}
         - name: Test
           run: npm run test
+
         - name: Build
           run: npm run build
