@@ -10,8 +10,3 @@ jobs:
         with:
             target-directory: 18-reusable-workflows/react-app
             target-env: dummmy-dir
-    e2e-tests:
-      needs: deploy
-      # uses: mukeshkeshridevops/github-actions-reusing-workflow/.github/workflows/e2e.yaml@main
-      secrets:
-        access-token: ${{ secrets.GH_TOKEN }}
